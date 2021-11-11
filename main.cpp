@@ -18,7 +18,54 @@ public:
     Object(bool value): _bool(value), _type('b') { }
 
     [[nodiscard]] double getDecimal() const {
-        return _double;
+        switch (_type) {
+            case 'i': return _integer;
+            case 'f': return _float;
+            case 'd': return _double;
+            case 'c': return _char;
+            case 'b': return _bool;
+            default: return _double;
+        }
+    }
+
+    [[nodiscard]] double getDouble() const {
+        if (_type == 'i') return _double;
+        else {
+            std::cout << "Type of Object is not double! Function return \\0-symbol by default!" << std::endl;
+        }
+        return 0;
+    }
+
+    [[nodiscard]] float getFloat() const {
+        if (_type == 'i') return _float;
+        else {
+            std::cout << "Type of Object is not float! Function return \\0-symbol by default!" << std::endl;
+        }
+        return 0;
+    }
+
+    [[nodiscard]] int getInteger() const {
+        if (_type == 'i') return _integer;
+        else {
+            std::cout << "Type of Object is not integer! Function return \\0-symbol by default!" << std::endl;
+        }
+        return 0;
+    }
+
+    [[nodiscard]] char getChar() const {
+        if (_type == 'c') return _char;
+        else {
+            std::cout << "Type of Object is not bool! Function return \\0-symbol by default!" << std::endl;
+        }
+        return 0;
+    }
+
+    [[nodiscard]] bool getBoolean() const {
+        if (_type == 'b') return _bool;
+        else {
+            std::cout << "Type of Object is not bool! Function return false by default!" << std::endl;
+        }
+        return false;
     }
 
     [[nodiscard]] std::string type() const {
