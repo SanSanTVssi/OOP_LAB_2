@@ -6,17 +6,17 @@
 
 double Object::getDecimal() const {
     switch (_type) {
-        case 'i': return _integer;
-        case 'f': return _float;
-        case 'd': return _double;
-        case 'c': return _char;
-        case 'b': return _bool;
-        default: return _double;
+        case 'i': return value._integer;
+        case 'f': return value._float;
+        case 'd': return value._double;
+        case 'c': return value._char;
+        case 'b': return value._bool;
+        default: return value._double;
     }
 }
 
 double Object::getDouble() const {
-    if (_type == 'i') return _double;
+    if (_type == 'i') return value._double;
     else {
         std::cout << "Type of Object is not double! Function return \\0-symbol by default!" << std::endl;
     }
@@ -24,7 +24,7 @@ double Object::getDouble() const {
 }
 
 float Object::getFloat() const {
-    if (_type == 'i') return _float;
+    if (_type == 'i') return value._float;
     else {
         std::cout << "Type of Object is not float! Function return \\0-symbol by default!" << std::endl;
     }
@@ -32,7 +32,7 @@ float Object::getFloat() const {
 }
 
 int Object::getInteger() const {
-    if (_type == 'i') return _integer;
+    if (_type == 'i') return value._integer;
     else {
         std::cout << "Type of Object is not integer! Function return \\0-symbol by default!" << std::endl;
     }
@@ -40,7 +40,7 @@ int Object::getInteger() const {
 }
 
 char Object::getChar() const {
-    if (_type == 'c') return _char;
+    if (_type == 'c') return value._char;
     else {
         std::cout << "Type of Object is not bool! Function return \\0-symbol by default!" << std::endl;
     }
@@ -48,7 +48,7 @@ char Object::getChar() const {
 }
 
 bool Object::getBoolean() const {
-    if (_type == 'b') return _bool;
+    if (_type == 'b') return value._bool;
     else {
         std::cout << "Type of Object is not bool! Function return false by default!" << std::endl;
     }

@@ -14,7 +14,6 @@ void Foo(Array* arr) {
     arr->print();
 }
 
-
 int main()
 {
     float ArrforInstance[2] {1.1, 1.2};
