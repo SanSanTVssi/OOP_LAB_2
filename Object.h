@@ -15,11 +15,11 @@ private:
         int _integer;
         char _char;
 
-        VALUE(int value): _integer(value) { }
-        VALUE(float value): _float(value) { }
-        VALUE(double value): _double(value) { }
-        VALUE(char value): _char(value) { }
-        VALUE(bool value): _bool(value) { }
+        explicit VALUE(int value): _integer(value) { }
+        explicit VALUE(float value): _float(value) { }
+        explicit VALUE(double value): _double(value) { }
+        explicit VALUE(char value): _char(value) { }
+        explicit VALUE(bool value): _bool(value) { }
     } value;
     char _type;
 public:
@@ -34,7 +34,7 @@ public:
     [[nodiscard]] double getDouble() const;
     [[nodiscard]] float getFloat() const;
     [[nodiscard]] int getInteger() const;
-    [[nodiscard]] char getChar() const;
+    [[nodiscard]] char getCharacter() const;
     [[nodiscard]] bool getBoolean() const;
     [[nodiscard]] std::string type() const;
 };

@@ -39,7 +39,7 @@ int Object::getInteger() const {
     return 0;
 }
 
-char Object::getChar() const {
+char Object::getCharacter() const {
     if (_type == 'c') return value._char;
     else {
         std::cout << "Type of Object is not bool! Function return \\0-symbol by default!" << std::endl;
