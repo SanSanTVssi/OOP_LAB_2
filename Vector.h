@@ -10,31 +10,28 @@
 class Vector: public Array{
 public:
 
-    Vector() {
-        length = 0;
-        data = nullptr;
-    }
+    Vector() : Array() { }
 
     template<typename T>
-    explicit Vector(T value) {
+    explicit Vector(T value) : Array() {
         Vector::push_back(static_cast<double>(value));
     }
 
     template<typename T>
-    Vector(int size, T * array) {
+    Vector(int size, T * array) : Array() {
         for (int i = 0; i < size; ++i) {
             Vector::push_back(static_cast<double>(array[i]));
         }
     }
 
     template<typename T>
-    Vector(int RepeatOfValue, T value) {
+    Vector(int RepeatOfValue, T value) : Array() {
         for (int i = 0; i < RepeatOfValue; ++i) {
             Vector::push_back(static_cast<double>(value));
         }
     }
 
-    Vector(Vector const &vector) {
+    Vector(Vector const &vector) : Array() {
         for (int i = 0; i < vector.Length(); ++i) {
             Vector::push_back(vector[i]);
         }

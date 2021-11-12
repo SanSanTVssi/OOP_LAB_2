@@ -17,6 +17,7 @@ void Foo(Array* arr) {
 int main()
 {
     float ArrforInstance[2] {1.1, 1.2};
+    auto v = Vector();
     auto instance1 = Vector(2, ArrforInstance);
     Foo(&instance1);
     Vector instance2 = Vector(instance1);

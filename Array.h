@@ -8,10 +8,11 @@
 
 class Array {
 protected:
-    Object * data = nullptr;
-    int length = 0;
+    Object * data;
+    int length;
     void resizeOnce();
 public:
+    Array(): data(nullptr), length(0) {}
     virtual void push_back(Object other) = 0;
     virtual void print() const = 0;
     void resize(int new_size);
