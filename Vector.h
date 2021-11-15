@@ -42,7 +42,7 @@ public:
     void scans() override;
     void printType() const override;
     double operator[](int iterator) const;
-    ~Vector() override;
+    [[nodiscard]] Vector getElementInVector(int index) const;
 };
 
 #endif //LAB22_VECTOR_H

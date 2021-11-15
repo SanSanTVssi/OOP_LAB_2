@@ -5,16 +5,18 @@
 #ifndef LAB22_ARRAY_H
 #define LAB22_ARRAY_H
 #include "Object.h"
-#define interface class
 
-interface IArray {
+class IArray {
+public:
     virtual void push_back(Object other) = 0;
     virtual void print() const = 0;
     virtual void resize(int) = 0;
     [[nodiscard]] virtual int Length() const = 0;
+    virtual ~IArray() = 0;
 };
 
-interface IConsoleIO {
+class IConsoleIO {
+public:
     virtual void print() const = 0;
     virtual void scan() = 0;
     virtual void scans() = 0;
@@ -35,7 +37,7 @@ public:
     void printType() const override = 0;
     void resize(int) override;
     [[nodiscard]] int Length() const override {return length;};
-    virtual ~Array() = 0;
+    ~Array() override;
 };
 
 #endif //LAB22_ARRAY_H

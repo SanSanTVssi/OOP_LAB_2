@@ -27,6 +27,7 @@ void String::scans() {
         for (char i : temp) {
             push_back(i);
         }
+        push_back(' ');
     } while(std::cin.get() != '\n');
     std::cin.clear();
 }
@@ -35,10 +36,10 @@ void String::printType() const {
     std::cout << "char[" << length << "]" << std::endl;
 }
 
-double String::operator[](int iterator) const {
+char String::operator[](int iterator) const {
     return data[iterator].get<char>();
 }
 
-String::~String() {
-
+String String::getElementInString(int index) const {
+    return String(data[index].get<char>());
 }

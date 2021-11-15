@@ -37,8 +37,8 @@ public:
     void scan() override;
     void scans() override;
     void printType() const override;
-    double operator[](int iterator) const;
-    ~String() override;
+    char operator[](int iterator) const;
+    [[nodiscard]] String getElementInString(int index) const;
 };
 
 

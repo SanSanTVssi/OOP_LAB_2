@@ -15,11 +15,6 @@ double Vector::operator[](int iterator) const {
     return data[iterator].getDecimal();
 }
 
-Vector::~Vector() {
-    delete[] data;
-    length = 0;
-}
-
 void Vector::scan() {
     std::string temp = std::string();
     std::cin >> temp;
@@ -47,4 +42,8 @@ void Vector::scans() {
         push_back(stod(temp));
     } while(std::cin.get() != '\n');
     std::cin.clear();
+}
+
+Vector Vector::getElementInVector(int index) const {
+    return Vector(data[index].getDecimal());
 }

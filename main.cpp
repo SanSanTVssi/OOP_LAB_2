@@ -5,7 +5,7 @@
 
 
 void Foo(Array* arr) {
-    float x = 64;
+    float x = 65;
     for (int i = 0; i < 4; ++i) {
         arr->push_back(x++);
     }

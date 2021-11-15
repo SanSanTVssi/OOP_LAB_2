@@ -4,7 +4,7 @@
 
 #include "Array.h"
 
-Array::~Array() = default;
+IArray::~IArray() = default;
 
 void Array::resize(int new_size) {
     if (data == nullptr) {
@@ -42,4 +42,9 @@ void Array::resizeOnce() {
 void Array::push_back(Object other) {
     resizeOnce();
     data[length - 1] = other;
+}
+
+Array::~Array() {
+    delete[] data;
+    length = 0;
 }
