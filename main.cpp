@@ -1,29 +1,35 @@
 #include <iostream>
 #include <memory>
 #include "Vector.h"
+#include "String.h"
 
 
 void Foo(Array* arr) {
-    int x = 64;
+    float x = 64;
     for (int i = 0; i < 4; ++i) {
         arr->push_back(x++);
     }
     arr->print();
     arr->resize(7);
     std::cout << "=========================" << std::endl;
+    arr->scans();
     arr->print();
+    std::cout << arr->Length() << std::endl;
+    arr->printType();
 }
 
 int main()
 {
     float ArrforInstance[2] {1.1, 1.2};
-    auto v = Vector();
     auto instance1 = Vector(2, ArrforInstance);
+    instance1.printType();
+    auto instance2 = String("niger");
+    Foo(&instance2);
     Foo(&instance1);
-    Vector instance2 = Vector(instance1);
+    Vector instance3 = Vector(instance1);
     std::cout << "=========================" << std::endl;
     instance1.resize(3);
     instance1.print();
     std::cout << "=========================" << std::endl;
-    instance2.print();
+    instance3.print();
 }

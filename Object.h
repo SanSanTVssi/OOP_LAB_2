@@ -31,11 +31,17 @@ public:
     Object(bool value): value(value), _type('b') { }
 
     [[nodiscard]] double getDecimal() const;
-    [[nodiscard]] double getDouble() const;
-    [[nodiscard]] float getFloat() const;
-    [[nodiscard]] int getInteger() const;
-    [[nodiscard]] char getCharacter() const;
-    [[nodiscard]] bool getBoolean() const;
+    template <typename Type>
+    [[nodiscard]] Type get() const {
+        switch (_type) {
+            case 'i': return value._integer;
+            case 'd': return value._float;
+            case 'c': return value._char;
+            case 'b': return value._bool;
+            case 'f': return value._float;
+            default: return value._double;
+        }
+    }
     [[nodiscard]] std::string type() const;
 };
 

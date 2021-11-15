@@ -6,15 +6,6 @@
 
 Array::~Array() = default;
 
-void Array::resizeOnce() {
-    if (data == nullptr) {
-        data = new Object[++length];
-    }
-    else {
-        data = (Object*) realloc (data, ++length * sizeof(Object));
-    }
-}
-
 void Array::resize(int new_size) {
     if (data == nullptr) {
         length = new_size;
@@ -39,6 +30,16 @@ void Array::resize(int new_size) {
     }
 }
 
-int Array::Length() const {
-    return length;
+void Array::resizeOnce() {
+    if (data == nullptr) {
+        data = new Object[++length];
+    }
+    else {
+        data = (Object*) realloc (data, ++length * sizeof(Object));
+    }
+}
+
+void Array::push_back(Object other) {
+    resizeOnce();
+    data[length - 1] = other;
 }

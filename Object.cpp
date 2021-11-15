@@ -15,46 +15,6 @@ double Object::getDecimal() const {
     }
 }
 
-double Object::getDouble() const {
-    if (_type == 'i') return value._double;
-    else {
-        std::cout << "Type of Object is not double! Function return \\0-symbol by default!" << std::endl;
-    }
-    return 0;
-}
-
-float Object::getFloat() const {
-    if (_type == 'i') return value._float;
-    else {
-        std::cout << "Type of Object is not float! Function return \\0-symbol by default!" << std::endl;
-    }
-    return 0;
-}
-
-int Object::getInteger() const {
-    if (_type == 'i') return value._integer;
-    else {
-        std::cout << "Type of Object is not integer! Function return \\0-symbol by default!" << std::endl;
-    }
-    return 0;
-}
-
-char Object::getCharacter() const {
-    if (_type == 'c') return value._char;
-    else {
-        std::cout << "Type of Object is not bool! Function return \\0-symbol by default!" << std::endl;
-    }
-    return 0;
-}
-
-bool Object::getBoolean() const {
-    if (_type == 'b') return value._bool;
-    else {
-        std::cout << "Type of Object is not bool! Function return false by default!" << std::endl;
-    }
-    return false;
-}
-
 std::string Object::type() const {
     switch (_type) {
         case 'i': return "int";

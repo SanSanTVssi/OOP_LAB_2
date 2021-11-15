@@ -7,7 +7,7 @@
 
 #include "Array.h"
 
-class Vector: public Array{
+class Vector: public Array {
 public:
 
     Vector() : Array() { }
@@ -38,8 +38,10 @@ public:
     }
 
     void print() const override;
+    void scan() override;
+    void scans() override;
+    void printType() const override;
     double operator[](int iterator) const;
-    void push_back(Object other) override;
     ~Vector() override;
 };
 
