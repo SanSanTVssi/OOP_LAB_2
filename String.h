@@ -27,7 +27,8 @@ public:
 
     explicit String(const char * array) : Array() {
         for (int i = 0;array[i] != 0; ++i) {
-            String::push_back(array[i]);
+            char c = array[i];
+            String::push_back(c);
         }
     }
 
@@ -44,8 +45,22 @@ public:
     }
 
     void push_back(Boost::Any value) override {
-        resizeOnce();
-        data[length - 1] = Boost::any_cast<char>(value);
+         if (value.type() != 's') {
+             resizeOnce();
+             data[length - 1] = Boost::any_cast<char>(value);
+         }
+         else {
+             resizeOnce();
+             data[length - 1] = ' ';
+             pushString(value.getString());
+         }
+    }
+
+    void pushString(const std::string& string) {
+        for (char c: string) {
+            resizeOnce();
+            data[length - 1] = c;
+        }
     }
 
     void resize(int new_size) override {

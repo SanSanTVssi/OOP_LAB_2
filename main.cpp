@@ -7,6 +7,7 @@ void Foo(Array* arr) {
     for (int i = 0; i < 4; ++i) {
         arr->push_back(x++);
     }
+    arr->push_back("string");
     arr->print();
     arr->resize(7);
     std::cout << "=========================" << std::endl;
@@ -16,12 +17,15 @@ void Foo(Array* arr) {
     arr->printType();
 }
 
+void AnyFoo(Boost::Any string) {
+}
+
 int main()
 {
     double ArrforInstance[2] {1.1, 1.2};
     auto instance1 = Vector(2, ArrforInstance);
     instance1.printType();
-    auto instance2 = String("niger");
+    auto instance2 = String("in");
 //    auto instance3 = boolArray(false);
     Foo(&instance1);
     Foo(&instance2);

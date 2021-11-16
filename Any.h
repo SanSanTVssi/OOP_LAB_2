@@ -5,12 +5,14 @@
 #ifndef LAB22_ANY_H
 #define LAB22_ANY_H
 #include <iostream>
+#include <utility>
 
 namespace Boost {
     struct Any {
     protected:
-        union VALUE {
+        struct VALUE {
             double _double;
+            const char * _string;
             float _float;
             bool _bool;
             int _integer;
@@ -25,23 +27,36 @@ namespace Boost {
             explicit VALUE(char value) : _char(value) {}
 
             explicit VALUE(bool value) : _bool(value) {}
+
+            explicit VALUE(const char * value) : _string(value) {}
+
         } value;
 
         char _type;
     public:
-        Any() : value(0) {}
+        Any() = delete;
 
-        Any(int value) : value(value), _type('i') {}
+        Any(int val) : value(val), _type('f') {}
 
-        Any(float value) : value(value), _type('f') {}
+        Any(float val) : value(val), _type('f') {}
 
-        Any(double value) : value(value), _type('d') {}
+        Any(double val) : value(val), _type('d') {}
 
-        Any(char value) : value(value), _type('c') {}
+        Any(char val) : value(val), _type('c') {}
 
-        Any(bool value) : value(value), _type('b') {}
+        Any(bool val) : value(val), _type('b') {}
 
-        [[nodiscard]]double get() const;
+        Any(double * val) : value(val), _type('d') {}
+
+        Any (const char *str) : value(str), _type('s') {}
+
+        [[nodiscard]] char type() const {
+            return _type;
+        }
+
+        [[nodiscard]] std::string getString() const {
+            return value._string;
+        }
 
         template<typename T>
         friend T any_cast(Any val);
