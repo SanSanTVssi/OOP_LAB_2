@@ -29,7 +29,7 @@ class IType {
     virtual void printType() const = 0;
 };
 
-class Array: Boost::Any, IArray, IOutput, IInput, IType{
+class Array: IArray, IOutput, IInput, IType{
 protected:
     int length;
 public:
