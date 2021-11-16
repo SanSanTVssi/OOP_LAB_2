@@ -25,7 +25,7 @@ public:
         String::push_back(value);
     }
 
-    explicit String(const char * array) : Array() {
+    String(const char * array) : Array() {
         for (int i = 0;array[i] != 0; ++i) {
             char c = array[i];
             String::push_back(c);

@@ -10,7 +10,7 @@
 namespace Boost {
     struct Any {
     protected:
-        struct VALUE {
+        union VALUE {
             double _double;
             const char * _string;
             float _float;
