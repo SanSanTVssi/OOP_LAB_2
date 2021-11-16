@@ -8,6 +8,7 @@ void Foo(Array* arr) {
         arr->push_back(x++);
     }
     arr->push_back("string");
+    arr->push_back(true);
     arr->print();
     arr->resize(26);
     std::cout << "=========================" << std::endl;

@@ -44,81 +44,17 @@ public:
         }
     }
 
-    void push_back(Boost::Any value) override {
-        switch (value.type()) {
-            case 'c':
-            {
-                resizeOnce();
-                data[length - 1] = Boost::any_cast<char>(value);
-            } break;
-            case 'd':
-            {
-                auto temp = Boost::any_cast<double>(value);
-                std::string tempstr = std::to_string(temp);
-                pushString(tempstr);
-            } break;
-            case 'i':
-            {
-                auto temp = Boost::any_cast<int>(value);
-                std::string tempstr = std::to_string(temp);
-                pushString(tempstr);
-            } break;
-            case 'f':
-            {
-                auto temp = Boost::any_cast<float>(value);
-                std::string tempstr = std::to_string(temp);
-                pushString(tempstr);
-            } break;
-            case 'b':
-            {
-                auto temp = Boost::any_cast<bool>(value);
-                std::string tempstr = (temp) ? "true": "false";
-                pushString(tempstr);
-            } break;
-            case 's':
-            {
-                pushString(value.getString());
-            } break;
+    void push_back(Boost::Any value) override;
 
-        }
-    }
+    void pushString(const std::string& string);
 
-    void pushString(const std::string& string) {
-        for (char c: string) {
-            resizeOnce();
-            data[length - 1] = c;
-        }
-    }
-
-    void resize(int new_size) override {
-        if (data == nullptr) {
-            length = new_size;
-            data = new char[length];
-            for (int i = 0; i < length; ++i) {
-                data[i] = '\0';
-            }
-        }
-        if (new_size > length) {
-            for (int i = length; i < new_size; ++i) {
-                push_back('\0');
-            }
-        }
-        else if (new_size < length) {
-            auto *newArr = new char[new_size];
-            for (int i = 0; i < new_size; ++i) {
-                newArr[i] = data[i];
-            }
-            delete[] data;
-            data = newArr;
-            length = new_size;
-        }
-    }
+    void resize(int new_size) override;
 
     void print() const override;
     void scans() override;
     void printType() const override;
     char operator[](int iterator) const;
-    //[[nodiscard]] String getElementInString(int index) const;
+    [[nodiscard]] String getElementInString(int index) const;
 };
 
 
