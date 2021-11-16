@@ -98,10 +98,6 @@ public:
         return data[iterator];
     }
 
-    [[nodiscard]] Boost::Any getAny(int iterator) const override {
-        return data[iterator];
-    }
-
     [[nodiscard]] Vector getElementInVector(int index) const {
         return Vector(data[index]);
     }

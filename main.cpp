@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Vector.h"
+#include "String.h"
 
 void Foo(Array* arr) {
     float x = 65;
@@ -20,10 +21,10 @@ int main()
     double ArrforInstance[2] {1.1, 1.2};
     auto instance1 = Vector(2, ArrforInstance);
     instance1.printType();
-//    auto instance2 = String("niger");
+    auto instance2 = String("niger");
 //    auto instance3 = boolArray(false);
     Foo(&instance1);
-//    Foo(&instance2);
+    Foo(&instance2);
 //    Foo(&instance3);
     Vector instance4 = Vector(instance1);
     std::cout << "Cloning Array" << std::endl;

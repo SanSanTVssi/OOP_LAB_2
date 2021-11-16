@@ -9,7 +9,6 @@
 class IArray {
 public:
     virtual void push_back(Boost::Any other) = 0;
-    virtual Boost::Any getAny(int iterator) const = 0;
     virtual void resize(int) = 0;
     [[nodiscard]] virtual int Length() const = 0;
     virtual ~IArray() = 0;
@@ -35,7 +34,6 @@ protected:
 public:
     Array(): length(0) {}
     void push_back(Boost::Any other) override = 0;
-    [[nodiscard]] Boost::Any getAny(int iterator) const override = 0;
     void print() const override = 0;
     void scans() override = 0;
     void printType() const override = 0;

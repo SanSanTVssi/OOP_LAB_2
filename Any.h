@@ -7,38 +7,56 @@
 #include <iostream>
 
 namespace Boost {
-    union Any {
+    struct Any {
     protected:
-        double _double;
-        float _float;
-        bool _bool;
-        int _integer;
-        char _char;
+        union VALUE {
+            double _double;
+            float _float;
+            bool _bool;
+            int _integer;
+            char _char;
 
+            explicit VALUE(int value) : _integer(value) {}
+
+            explicit VALUE(float value) : _float(value) {}
+
+            explicit VALUE(double value) : _double(value) {}
+
+            explicit VALUE(char value) : _char(value) {}
+
+            explicit VALUE(bool value) : _bool(value) {}
+        } value;
+
+        char _type;
     public:
-        Any(int value) : _integer(value) {}
+        Any() : value(0) {}
 
-        Any(float value) : _float(value) {}
+        Any(int value) : value(value), _type('i') {}
 
-        Any(double value) : _double(value) {}
+        Any(float value) : value(value), _type('f') {}
 
-        Any(char value) : _char(value) {}
+        Any(double value) : value(value), _type('d') {}
 
-        Any(bool value) : _bool(value) {}
+        Any(char value) : value(value), _type('c') {}
+
+        Any(bool value) : value(value), _type('b') {}
+
+        [[nodiscard]]double get() const;
 
         template<typename T>
         friend T any_cast(Any val);
+
     };
 
     template<typename T>
     T any_cast(Any val) {
-        switch (typeid(T).name()[0]) {
-            case 'i': return static_cast<T>(val._integer);
-            case 'f': return static_cast<T>(val._float);
-            case 'd': return static_cast<T>(val._double);
-            case 'c': return static_cast<T>(val._char);
-            case 'b': return static_cast<T>(val._bool);
-            default: return static_cast<T>(val._double);
+        switch (val._type) {
+            case 'i': return static_cast<T>(val.value._integer);
+            case 'f': return static_cast<T>(val.value._float);
+            case 'd': return static_cast<T>(val.value._double);
+            case 'c': return static_cast<T>(val.value._char);
+            case 'b': return static_cast<T>(val.value._bool);
+            default: return static_cast<T>(val.value._double);
         }
     }
 }
