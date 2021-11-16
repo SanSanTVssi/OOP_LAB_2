@@ -3,6 +3,6 @@ project(Lab22)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Lab22 main.cpp Vector.cpp Vector.h Array.cpp Array.h Any.cpp Any.h String.cpp String.h)
+add_executable(Lab22 main.cpp Vector.cpp Vector.h Array.cpp Array.h Any.h String.cpp String.h boolArray.cpp boolArray.h)
 
 #boolArray.cpp boolArray.h String.cpp String.h

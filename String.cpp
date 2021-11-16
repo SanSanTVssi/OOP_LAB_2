@@ -103,3 +103,45 @@ void String::resize(int new_size) {
         length = new_size;
     }
 }
+
+String String::operator+(const String &other) {
+    String string = String();
+    for (int i = 0; i < Length(); ++i) {
+        string.push_back(data[i]);
+    }
+    for (int i = 0; i < other.Length(); ++i) {
+        string.push_back(other[i]);
+    }
+    return string;
+}
+
+String::String(char value) : Array() {
+    String::push_back(value);
+}
+
+String::String(const char *array) : Array() {
+    for (int i = 0;array[i] != 0; ++i) {
+        char c = array[i];
+        String::push_back(c);
+    }
+}
+
+String::String(const String &vector) : Array() {
+    for (int i = 0; i < vector.Length(); ++i) {
+        String::push_back(vector[i]);
+    }
+}
+
+String::String(int RepeatOfValue, char value) : Array() {
+    for (int i = 0; i < RepeatOfValue; ++i) {
+        String::push_back(value);
+    }
+}
+
+void String::resizeOnce() {
+    if (data == nullptr) {
+        data = new char[++length];
+    } else {
+        data = (char *) realloc(data, ++length * sizeof(char));
+    }
+}

@@ -56,9 +56,19 @@ namespace Boost {
             return value._string;
         }
 
+        Any operator=(Any val) {
+            switch (val._type) {
+                case 'i': value = VALUE(val.value._integer); break;
+                case 'd': value = VALUE(val.value._double); break;
+                case 'f': value = VALUE(val.value._float); break;
+                case 'c': value = VALUE(val.value._char); break;
+                case 'b': value = VALUE(val.value._bool); break;
+                case 's': value = VALUE(val.value._string); break;
+            }
+        }
+
         template<typename T>
         friend T any_cast(Any val);
-
     };
 
     template<typename T>
@@ -73,9 +83,5 @@ namespace Boost {
         }
     }
 }
-
-
-
-
 
 #endif //LAB22_ANY_H

@@ -7,54 +7,40 @@
 
 #include "Array.h"
 
-class String: public Array {
+class String : public Array {
 private:
-    char * data = nullptr;
-    void resizeOnce() {
-        if (data == nullptr) {
-            data = new char[++length];
-        }
-        else {
-            data = (char*) realloc (data, ++length * sizeof(char));
-        }
-    }
+    char *data = nullptr;
+
+    void resizeOnce();
+
 public:
-    String() : Array() { }
+    String() : Array() {}
 
-    explicit String(char value) : Array() {
-        String::push_back(value);
-    }
+    explicit String(char);
 
-    String(const char * array) : Array() {
-        for (int i = 0;array[i] != 0; ++i) {
-            char c = array[i];
-            String::push_back(c);
-        }
-    }
+    String(const char *);
 
-    String(int RepeatOfValue, char value) : Array() {
-        for (int i = 0; i < RepeatOfValue; ++i) {
-            String::push_back(value);
-        }
-    }
+    String(int, char);
 
-    String(String const &vector) : Array() {
-        for (int i = 0; i < vector.Length(); ++i) {
-            String::push_back(vector[i]);
-        }
-    }
+    String(String const &);
 
-    void push_back(Boost::Any value) override;
+    void push_back(Boost::Any) override;
 
-    void pushString(const std::string& string);
+    void pushString(const std::string &);
 
     void resize(int new_size) override;
 
+    String operator+(const String &);
+
     void print() const override;
+
     void scans() override;
+
     void printType() const override;
+
     char operator[](int iterator) const;
-    [[nodiscard]] String getElementInString(int index) const;
+
+    [[nodiscard]] String getElementInString(int) const;
 };
 
 
