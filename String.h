@@ -45,15 +45,42 @@ public:
     }
 
     void push_back(Boost::Any value) override {
-         if (value.type() != 's') {
-             resizeOnce();
-             data[length - 1] = Boost::any_cast<char>(value);
-         }
-         else {
-             resizeOnce();
-             data[length - 1] = ' ';
-             pushString(value.getString());
-         }
+        switch (value.type()) {
+            case 'c':
+            {
+                resizeOnce();
+                data[length - 1] = Boost::any_cast<char>(value);
+            } break;
+            case 'd':
+            {
+                auto temp = Boost::any_cast<double>(value);
+                std::string tempstr = std::to_string(temp);
+                pushString(tempstr);
+            } break;
+            case 'i':
+            {
+                auto temp = Boost::any_cast<int>(value);
+                std::string tempstr = std::to_string(temp);
+                pushString(tempstr);
+            } break;
+            case 'f':
+            {
+                auto temp = Boost::any_cast<float>(value);
+                std::string tempstr = std::to_string(temp);
+                pushString(tempstr);
+            } break;
+            case 'b':
+            {
+                auto temp = Boost::any_cast<bool>(value);
+                std::string tempstr = (temp) ? "true": "false";
+                pushString(tempstr);
+            } break;
+            case 's':
+            {
+                pushString(value.getString());
+            } break;
+
+        }
     }
 
     void pushString(const std::string& string) {
@@ -68,12 +95,12 @@ public:
             length = new_size;
             data = new char[length];
             for (int i = 0; i < length; ++i) {
-                data[i] = 0.0;
+                data[i] = '\0';
             }
         }
         if (new_size > length) {
             for (int i = length; i < new_size; ++i) {
-                push_back(0.0);
+                push_back('\0');
             }
         }
         else if (new_size < length) {

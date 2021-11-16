@@ -36,7 +36,7 @@ namespace Boost {
     public:
         Any() = delete;
 
-        Any(int val) : value(val), _type('f') {}
+        Any(int val) : value(val), _type('i') {}
 
         Any(float val) : value(val), _type('f') {}
 

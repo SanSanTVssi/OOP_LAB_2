@@ -3,21 +3,18 @@
 #include "String.h"
 
 void Foo(Array* arr) {
-    float x = 65;
+    int x = 65;
     for (int i = 0; i < 4; ++i) {
         arr->push_back(x++);
     }
     arr->push_back("string");
     arr->print();
-    arr->resize(7);
+    arr->resize(26);
     std::cout << "=========================" << std::endl;
     arr->scans();
     arr->print();
     std::cout << arr->Length() << std::endl;
     arr->printType();
-}
-
-void AnyFoo(Boost::Any string) {
 }
 
 int main()
@@ -33,7 +30,7 @@ int main()
     Vector instance4 = Vector(instance1);
     std::cout << "Cloning Array" << std::endl;
     std::cout << "=========================" << std::endl;
-    instance1.resize(25);
+    instance1.resize(7);
     instance1.print();
     std::cout << "=========================" << std::endl;
     instance4.print();
