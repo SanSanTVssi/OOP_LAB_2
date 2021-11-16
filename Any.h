@@ -46,8 +46,6 @@ namespace Boost {
 
         Any(bool val) : value(val), _type('b') {}
 
-        Any(double * val) : value(val), _type('d') {}
-
         Any (const char *str) : value(str), _type('s') {}
 
         [[nodiscard]] char type() const {
