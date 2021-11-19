@@ -4,6 +4,4 @@
 
 #include "Array.h"
 
-IArray::~IArray() = default;
-
 Array::~Array() = default;

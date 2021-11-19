@@ -24,18 +24,18 @@ public:
     Vector() : Array() { }
 
     explicit Vector(T value) : Array() {
-        Vector::push_back(static_cast<double>(value));
+        Vector::push_back(value);
     }
 
     Vector(int size, T * array) : Array() {
         for (int i = 0; i < size; ++i) {
-            Vector::push_back(static_cast<double>(array[i]));
+            Vector::push_back(array[i]);
         }
     }
 
     Vector(int RepeatOfValue, T value) : Array() {
         for (int i = 0; i < RepeatOfValue; ++i) {
-            Vector::push_back(static_cast<double>(value));
+            Vector::push_back(value);
         }
     }
 

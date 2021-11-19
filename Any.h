@@ -6,6 +6,7 @@
 #define LAB22_ANY_H
 #include <iostream>
 #include <utility>
+#include "Array.h"
 
 namespace Boost {
     struct Any {
@@ -17,6 +18,7 @@ namespace Boost {
             bool _bool;
             int _integer;
             char _char;
+            //Array * _array;
 
             explicit VALUE(int value) : _integer(value) {}
 
