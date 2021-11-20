@@ -48,6 +48,13 @@ public:
 
     [[nodiscard]] boolArray getElementInBoolArr(int) const;
 
+    boolArray& operator=(boolArray& other) {
+        for (int i = 0; i < other.Length(); ++i) {
+            this->push_back(other[i]);
+        }
+        return *this;
+    }
+
     ~boolArray() override {
         delete[] data;
     }

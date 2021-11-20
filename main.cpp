@@ -3,14 +3,19 @@
 #include "String.h"
 #include "boolArray.h"
 #include "arrayOfarrays.h"
+#include "arrayOfstring.h"
+#include "arrayOfboolArray.h"
+#include "arrayOfVector.h"
 
 void Foo(Array* arr) {
-//    int x = 65;
-//    for (int i = 0; i < 4; ++i) {
-//        arr->push_back(x++);
-//    }
-//    arr->push_back("string");
-//    arr->push_back(true);
+    int x = 65;
+    for (int i = 0; i < 10; ++i) {
+        arr->push_back(x++);
+    }
+    arr->push_back("string");
+    arr->push_back(true);
+    arr->print();
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
     arr->resize(7);
     arr->scans();
     arr->print();
@@ -25,29 +30,38 @@ int main()
     auto instance2 = String("in");
     auto instance3 = boolArray(true);
 
-    auto instance11 = arrayOfarrays(instance1);
-    auto instance12 = arrayOfarrays(instance2);
-    auto instance13 = arrayOfarrays(instance3);
+    auto instance21 = arrayOfVector(instance1);
+    auto instance22 = arrayOfstring(instance2);
+    auto instance23 = arrayOfboolArray(instance3);
+    Foo(&instance21);
+    Foo(&instance22);
+    Foo(&instance23);
 
-    std::cout << "VectorArray" << std::endl;
-    std::cout << "=========================" << std::endl;
-    Foo(&instance11);
-    std::cout << "StringArray" << std::endl;
-    std::cout << "=========================" << std::endl;
-    Foo(&instance12);
-    std::cout << "boolArrayArray" << std::endl;
-    std::cout << "=========================" << std::endl;
-    Foo(&instance13);
+//    auto instance11 = arrayOfarrays(instance1);
+//    auto instance12 = arrayOfarrays(instance2);
+//    auto instance13 = arrayOfarrays(instance3);
+//
+//    std::cout << "VectorArray" << std::endl;
+//    std::cout << "=========================" << std::endl;
+//    Foo(&instance11);
+//    std::cout << "StringArray" << std::endl;
+//    std::cout << "=========================" << std::endl;
+//    Foo(&instance12);
+//    std::cout << "boolArrayArray" << std::endl;
+//    std::cout << "=========================" << std::endl;
+//    Foo(&instance13);
 
-    std::cout << "Vector" << std::endl;
-    std::cout << "=========================" << std::endl;
-    Foo(&instance1);
-    std::cout << "String" << std::endl;
-    std::cout << "=========================" << std::endl;
-    Foo(&instance2);
-    std::cout << "boolArray" << std::endl;
-    std::cout << "=========================" << std::endl;
-    Foo(&instance3);
+//    std::cout << "Vector" << std::endl;
+//    std::cout << "=========================" << std::endl;
+//    Foo(&instance1);
+//    std::cout << "String" << std::endl;
+//    std::cout << "=========================" << std::endl;
+//    Foo(&instance2);
+//    std::cout << "boolArray" << std::endl;
+//    std::cout << "=========================" << std::endl;
+//    Foo(&instance3);
+
+
 
 //    Vector instance4 = instance1.Clone();
 //    std::cout << "Cloning Array" << std::endl;

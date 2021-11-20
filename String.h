@@ -57,6 +57,13 @@ public:
     ~String() override {
         delete[] data;
     }
+
+    String& operator=(String& other) {
+        for (int i = 0; i < other.Length(); ++i) {
+            this->push_back(other[i]);
+        }
+        return *this;
+    }
 };
 
 
