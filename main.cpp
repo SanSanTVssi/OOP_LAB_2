@@ -24,15 +24,16 @@ void demoIArr(IArray * array) {
 }
 
 void CloningDemo(Array * instance) {
+    using namespace std;
     IArray *newIArray;
     newIArray = instance->Clone();
     auto * newArray = dynamic_cast<Array *>(newIArray);
-    std::cout << "Incoming array:" << std::endl;
+    cout << "Incoming array:" << endl;
     dynamic_cast<Array *>(instance)->print();
-    std::cout << "Copy of array:" << std::endl;
+    cout << "Copy of array:" << endl;
     newArray->print();
     newArray->resize(2);
-    std::cout << "Resized array:" << std::endl;
+    cout << "Resized array:" << endl;
     newArray->print();
 }
 
@@ -44,6 +45,7 @@ void demo(Array* arr) {
 
 int main()
 {
+    using namespace std;
     std::cout << "~~~~~~~~~~~~~~~~~~~~~ Start ~~~~~~~~~~~~~~~~~~~~~" << std::endl;
     double ArrforInstance[2] {1.1, 1.2};
 
@@ -55,21 +57,21 @@ int main()
     auto instance22 = arrayOfstring(instance2);
     auto instance23 = arrayOfboolArray(instance3);
 
-    std::cout << "============Vector============" << std::endl;
+    cout << "============Vector============" << endl;
     demo(&instance1);
-    std::cout << "============String============" << std::endl;
+    cout << "============String============" << endl;
     demo(&instance2);
-    std::cout << "============boolArray============" << std::endl;
+    cout << "============boolArray============" << endl;
     demo(&instance3);
 
-    std::cout << "============VectorArray============" << std::endl;
+    cout << "============VectorArray============" << endl;
     demo(&instance21);
-    std::cout << "============StringArray============" << std::endl;
+    cout << "============StringArray============" << endl;
     demo(&instance22);
-    std::cout << "============boolArrayArray============" << std::endl;
+    cout << "============boolArrayArray============" << endl;
     demo(&instance23);
 
-    std::cout << "============AnyVector============" << std::endl;
+    cout << "============AnyVector============" << endl;
     auto instance31 = anyArray(&instance1);
     auto instance32 = anyArray(&instance1);
     instance31.push_back(&instance2);
@@ -81,7 +83,7 @@ int main()
     instance31.push_back(&instance32);
     demo(&instance31);
 
-    std::cout << "============Other Functional============" << std::endl;
+    cout << "============Other Functional============" << endl;
     (instance2 + "string2").print();
     boolArray instance5 = *dynamic_cast<boolArray *>(instance3.Clone());
     instance5.resize(3);
@@ -91,8 +93,8 @@ int main()
     instance3.print();
     (instance3 + instance5).print();
 
-    std::cout << "~~~~~~~~~~~~~~~~~~~~~  End  ~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+    cout << "~~~~~~~~~~~~~~~~~~~~~  End  ~~~~~~~~~~~~~~~~~~~~~" << endl;
     int x;
-    std::cin >> x;
+    cin >> x;
     return 0;
 }
