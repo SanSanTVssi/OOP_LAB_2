@@ -18,11 +18,23 @@ public:
 
     explicit String(char);
 
+    explicit String(Boost::Any val) {
+        String::push_back(val);
+    }
+
     String(const char *);
+
+    String Clone() {
+        String temp;
+        for (int i = 0; i < length; ++i) {
+            temp.push_back(this->data[i]);
+        }
+        return temp;
+    }
 
     String(int, char);
 
-    String(String const &);
+    String(String const &) = default;
 
     void push_back(Boost::Any) override;
 
@@ -41,6 +53,10 @@ public:
     char operator[](int iterator) const;
 
     [[nodiscard]] String getElementInString(int) const;
+
+    ~String() override {
+        delete[] data;
+    }
 };
 
 

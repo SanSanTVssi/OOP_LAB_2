@@ -4,4 +4,3 @@
 
 #include "intrerfaces.h"
 
-IArray::~IArray() = default;

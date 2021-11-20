@@ -5,3 +5,5 @@
 #include "Array.h"
 
 Array::~Array() = default;
+
+IArray::~IArray() = default;

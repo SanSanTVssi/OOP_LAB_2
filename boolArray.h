@@ -18,11 +18,19 @@ public:
 
     explicit boolArray(Boost::Any);
 
+    boolArray Clone() {
+        boolArray temp;
+        for (int i = 0; i < length; ++i) {
+            temp.push_back(this->data[i]);
+        }
+        return temp;
+    }
+
     boolArray(int, const bool *);
 
     boolArray(int, Boost::Any);
 
-    boolArray(boolArray const &);
+    boolArray(boolArray const &) = default;
 
     void push_back(Boost::Any) override;
 
@@ -39,6 +47,10 @@ public:
     bool operator[](int) const;
 
     [[nodiscard]] boolArray getElementInBoolArr(int) const;
+
+    ~boolArray() override {
+        delete[] data;
+    }
 };
 
 

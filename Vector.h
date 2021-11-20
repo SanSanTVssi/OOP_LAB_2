@@ -11,6 +11,7 @@ template <typename T>
 class Vector: public Array{
 private:
     T * data = nullptr;
+
     void resizeOnce() {
         if (data == nullptr) {
             data = new T[++length];
@@ -23,7 +24,7 @@ public:
 
     Vector() : Array() { }
 
-    explicit Vector(T value) : Array() {
+    explicit Vector(Boost::Any value) : Array() {
         Vector::push_back(value);
     }
 
@@ -33,17 +34,18 @@ public:
         }
     }
 
-    Vector(int RepeatOfValue, T value) : Array() {
+    Vector(int RepeatOfValue, Boost::Any value) : Array() {
         for (int i = 0; i < RepeatOfValue; ++i) {
             Vector::push_back(value);
         }
     }
 
-    Vector(Vector const &vector) : Array() {
-        for (int i = 0; i < vector.Length(); ++i) {
-            Vector::push_back(vector[i]);
-        }
-    }
+    Vector(Vector const &vector) = default;
+//    : Array() {
+//        for (int i = 0; i < vector.Length(); ++i) {
+//            Vector::push_back(vector[i]);
+//        }
+//    }
 
     void print() const override {
         for (int i = 0; i < length; ++i) {
@@ -59,6 +61,14 @@ public:
             push_back(stod(temp));
         } while(std::cin.get() != '\n');
         std::cin.clear();
+    }
+
+    Vector Clone() {
+        Vector temp;
+        for (int i = 0; i < length; ++i) {
+            temp.push_back(this->data[i]);
+        }
+        return temp;
     }
 
     void resize(int new_size) override {
@@ -112,7 +122,6 @@ public:
 
     ~Vector() override{
         delete[] data;
-        length = 0;
     }
 };
 

@@ -20,11 +20,11 @@ boolArray::boolArray(int RepeatOfValue, Boost::Any value) {
     }
 }
 
-boolArray::boolArray(const boolArray &array) {
-    for (int i = 0; i < array.Length(); ++i) {
-        boolArray::push_back(array[i]);
-    }
-}
+//boolArray::boolArray(const boolArray &array) {
+//    for (int i = 0; i < array.Length(); ++i) {
+//        boolArray::push_back(array[i]);
+//    }
+//}
 
 void boolArray::push_back(Boost::Any value) {
     resizeOnce();

@@ -6,7 +6,6 @@
 #define LAB22_ANY_H
 #include <iostream>
 #include <utility>
-#include "Array.h"
 
 namespace Boost {
     struct Any {
@@ -81,7 +80,7 @@ namespace Boost {
             case 'd': return static_cast<T>(val.value._double);
             case 'c': return static_cast<T>(val.value._char);
             case 'b': return static_cast<T>(val.value._bool);
-            default: return static_cast<T>(val.value._double);
+            default: return 0;
         }
     }
 }

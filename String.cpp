@@ -126,11 +126,11 @@ String::String(const char *array) : Array() {
     }
 }
 
-String::String(const String &vector) : Array() {
-    for (int i = 0; i < vector.Length(); ++i) {
-        String::push_back(vector[i]);
-    }
-}
+//String::String(const String &vector) : Array() {
+//    for (int i = 0; i < vector.Length(); ++i) {
+//        String::push_back(vector[i]);
+//    }
+//}
 
 String::String(int RepeatOfValue, char value) : Array() {
     for (int i = 0; i < RepeatOfValue; ++i) {
