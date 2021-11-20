@@ -5,24 +5,9 @@
 #ifndef LAB22_ARRAY_H
 #define LAB22_ARRAY_H
 #include "Any.h"
+#include "intrerfaces.h"
 
-class IArray {
-public:
-    virtual void push_back(Boost::Any other) = 0;
-    virtual void resize(int) = 0;
-    [[nodiscard]] virtual int Length() const = 0;
-    virtual ~IArray() = 0;
-};
-
-class IInputOutput {
-public:
-    virtual void print() const = 0;
-    virtual void scans() = 0;
-    virtual void printType() const = 0;
-};
-
-
-class Array: IArray, IInputOutput {
+class Array: public IArray, public IInputOutput, public ICloning{
 protected:
     int length;
 public:
@@ -32,6 +17,7 @@ public:
     void scans() override = 0;
     void printType() const override = 0;
     void resize(int) override = 0;
+    [[nodiscard]] IArray *Clone() const override = 0;
     [[nodiscard]] int Length() const override {return length;};
     ~Array() override = 0;
 };

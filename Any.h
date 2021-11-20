@@ -17,7 +17,6 @@ namespace Boost {
             bool _bool;
             int _integer;
             char _char;
-            //Array * _array;
 
             explicit VALUE(int value) : _integer(value) {}
 
@@ -53,7 +52,7 @@ namespace Boost {
             return _type;
         }
 
-        [[nodiscard]] std::string getString() const {
+        [[nodiscard]] char const * getString() const {
             return value._string;
         }
 

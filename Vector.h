@@ -41,11 +41,6 @@ public:
     }
 
     Vector(Vector const &vector) = default;
-//    : Array() {
-//        for (int i = 0; i < vector.Length(); ++i) {
-//            Vector::push_back(vector[i]);
-//        }
-//    }
 
     void print() const override {
         for (int i = 0; i < length; ++i) {
@@ -63,10 +58,10 @@ public:
         std::cin.clear();
     }
 
-    Vector Clone() {
-        Vector temp;
+    [[nodiscard]] IArray *Clone() const override {
+        Vector * temp = new Vector();
         for (int i = 0; i < length; ++i) {
-            temp.push_back(this->data[i]);
+            temp->push_back(this->data[i]);
         }
         return temp;
     }

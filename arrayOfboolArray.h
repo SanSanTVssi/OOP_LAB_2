@@ -27,6 +27,8 @@ private:
     }
 public:
 
+    arrayOfboolArray() : Array(), data(nullptr) { }
+
     explicit arrayOfboolArray (boolArray & value) : data(nullptr) {
         push_back(value);
     }
@@ -53,7 +55,7 @@ public:
         }
     }
     void printType() const override {
-        std::cout << "String[" << length << "]" << std::endl;
+        std::cout << "boolArray[" << length << "]" << std::endl;
     }
 
     boolArray operator[](int index) {
@@ -84,6 +86,14 @@ public:
             data = newArr;
             length = new_size;
         }
+    }
+
+    [[nodiscard]] IArray *Clone() const override {
+        arrayOfboolArray * temp = new arrayOfboolArray();
+        for (int i = 0; i < length; ++i) {
+            temp->push_back(data[i]);
+        }
+        return temp;
     }
 
     ~arrayOfboolArray() override{

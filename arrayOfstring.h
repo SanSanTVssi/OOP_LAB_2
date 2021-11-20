@@ -27,7 +27,9 @@ private:
     }
 public:
 
-    explicit arrayOfstring (String & value) : data(nullptr) {
+    arrayOfstring(): Array(), data(nullptr) {}
+
+    explicit arrayOfstring (String & value) : Array(), data(nullptr) {
         push_back(value);
     }
 
@@ -84,6 +86,14 @@ public:
             data = newArr;
             length = new_size;
         }
+    }
+
+    [[nodiscard]] IArray *Clone() const override {
+        arrayOfstring * temp = new arrayOfstring();
+        for (int i = 0; i < length; ++i) {
+            temp->push_back(data[i]);
+        }
+        return temp;
     }
 
     ~arrayOfstring() override{

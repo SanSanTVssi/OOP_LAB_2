@@ -2,23 +2,22 @@
 // Created by AAI2002 on 20.11.2021.
 //
 
-#ifndef LAB22_ARRAYOFVECTOR_H
-#define LAB22_ARRAYOFVECTOR_H
+#ifndef LAB22_ANYARRAY_H
+#define LAB22_ANYARRAY_H
 
 #include "Array.h"
-#include "Vector.h"
+#include "String.h"
 
-template <typename T>
-class arrayOfVector : public Array{
+class anyArray: public Array {
 private:
-    Vector<T> * data;
+    Array* * data;
 
     void resizeOnce() {
         if (data == nullptr) {
-            data = new Vector<T>[++length];
+            data = new Array*[++length];
         }
         else {
-            auto * newarr = new Vector<T>[++length];
+            auto * newarr = new Array*[++length];
             for (int i = 0; i < length - 1; ++i) {
                 newarr[i] = data[i];
             }
@@ -28,58 +27,70 @@ private:
     }
 public:
 
-    arrayOfVector() : Array(), data(nullptr) {}
+    anyArray(): Array(), data(nullptr) {}
 
-    explicit arrayOfVector (Vector<T> & value) : data(nullptr) {
+    explicit anyArray (Array* value): Array(), data(nullptr) {
         push_back(value);
     }
 
     void push_back(Boost::Any val) override {
-        Vector<T> temp = Vector<T>(val);
+        auto * temp = new String('\0');
         push_back(temp);
     }
 
-    void push_back(Vector<T> & value) {
-        resizeOnce();
-        data[length - 1] = value;
+    void push_back(Array* value) {
+        if (value != this) {
+            resizeOnce();
+            IArray* newArr = value->Clone();
+            data[length - 1] = dynamic_cast<Array *>(newArr);
+        }
+        else {
+            std::cout << "Exception! You cannot add add an object to itself!" << std::endl;
+        }
     }
 
     void scans() override {
-        Vector<T> temp = Vector<T>();
-        temp.scans();
+        auto * temp = new String();
+        temp->scans();
         push_back(temp);
     }
 
     void print() const override {
+        Array * temp;
         for (int i = 0; i < length; ++i) {
-            data[i].print();
+            temp = data[i];
+            if (temp != nullptr) {
+                temp->print();
+            }
+            else {
+                std::cout << "nullptr" << std::endl;
+            }
         }
     }
+
     void printType() const override {
-        std::cout << "Vector[" << length << "]" << std::endl;
+        std::cout << "anyArray[" << length << "]" << std::endl;
     }
 
-    Vector<T> operator[](int index) {
+    Array* operator[](int index) {
         return data[index];
     }
 
     void resize(int new_size) override {
         if (data == nullptr) {
             length = new_size;
-            data = new Vector<T>[length];
+            data = new Array*[length];
             for (int i = 0; i < length; ++i) {
-                Vector<T> temp = Vector<T>('\0');
-                data[i] = temp;
+                data[i] = nullptr;
             }
         }
         if (new_size > length) {
             for (int i = length; i < new_size; ++i) {
-                Vector<T> temp = Vector<T>('\0');
-                push_back(temp);
+                push_back(nullptr);
             }
         }
         else if (new_size < length) {
-            auto *newArr = new Vector<T>[new_size];
+            auto *newArr = new Array*[new_size];
             for (int i = 0; i < new_size; ++i) {
                 newArr[i] = data[i];
             }
@@ -90,17 +101,17 @@ public:
     }
 
     [[nodiscard]] IArray *Clone() const override {
-        auto * temp = new arrayOfVector();
+        auto * temp = new anyArray();
         for (int i = 0; i < length; ++i) {
             temp->push_back(data[i]);
         }
         return temp;
     }
 
-    ~arrayOfVector() override{
+    ~anyArray() override{
         delete[] data;
     }
 };
 
 
-#endif //LAB22_ARRAYOFVECTOR_H
+#endif //LAB22_ANYARRAY_H

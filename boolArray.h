@@ -18,10 +18,17 @@ public:
 
     explicit boolArray(Boost::Any);
 
-    boolArray Clone() {
-        boolArray temp;
+//    boolArray Clone() {
+//        boolArray temp;
+//        for (int i = 0; i < length; ++i) {
+//            temp.push_back(this->data[i]);
+//        }
+//        return temp;
+//    }
+    [[nodiscard]] IArray *Clone() const override {
+        boolArray * temp = new boolArray();
         for (int i = 0; i < length; ++i) {
-            temp.push_back(this->data[i]);
+            temp->push_back(data[i]);
         }
         return temp;
     }

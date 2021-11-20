@@ -32,7 +32,27 @@ void boolArray::push_back(Boost::Any value) {
 }
 
 void boolArray::resize(int new_size) {
-
+    if (data == nullptr) {
+        length = new_size;
+        data = new bool[length];
+        for (int i = 0; i < length; ++i) {
+            data[i] = false;
+        }
+    }
+    if (new_size > length) {
+        for (int i = length; i < new_size; ++i) {
+            push_back(false);
+        }
+    }
+    else if (new_size < length) {
+        auto *newArr = new bool[new_size];
+        for (int i = 0; i < new_size; ++i) {
+            newArr[i] = data[i];
+        }
+        delete[] data;
+        data = newArr;
+        length = new_size;
+    }
 }
 
 boolArray boolArray::operator+(const boolArray &other) {
