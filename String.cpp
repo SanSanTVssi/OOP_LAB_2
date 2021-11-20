@@ -126,12 +126,6 @@ String::String(const char *array) : Array() {
     }
 }
 
-//String::String(const String &vector) : Array() {
-//    for (int i = 0; i < vector.Length(); ++i) {
-//        String::push_back(vector[i]);
-//    }
-//}
-
 String::String(int RepeatOfValue, char value) : Array() {
     for (int i = 0; i < RepeatOfValue; ++i) {
         String::push_back(value);
@@ -144,4 +138,19 @@ void String::resizeOnce() {
     } else {
         data = (char *) realloc(data, ++length * sizeof(char));
     }
+}
+
+String &String::operator=(String &other) {
+    for (int i = 0; i < other.Length(); ++i) {
+        this->push_back(other[i]);
+    }
+    return *this;
+}
+
+IArray *String::Clone() const {
+    String * temp = new String();
+    for (int i = 0; i < length; ++i) {
+        temp->push_back(data[i]);
+    }
+    return temp;
 }

@@ -8,109 +8,35 @@
 #include "Array.h"
 #include "String.h"
 
-class anyArray: public Array {
+class anyArray : public Array {
 private:
-    Array* * data;
+    Array **data;
 
-    void resizeOnce() {
-        if (data == nullptr) {
-            data = new Array*[++length];
-        }
-        else {
-            auto * newarr = new Array*[++length];
-            for (int i = 0; i < length - 1; ++i) {
-                newarr[i] = data[i];
-            }
-            delete[] data;
-            data = newarr;
-        }
-    }
+    void resizeOnce();
+
 public:
 
-    anyArray(): Array(), data(nullptr) {}
+    anyArray() : Array(), data(nullptr) {}
 
-    explicit anyArray (Array* value): Array(), data(nullptr) {
-        push_back(value);
-    }
+    explicit anyArray(Array *value);
 
-    void push_back(Boost::Any val) override {
-        auto * temp = new String('\0');
-        push_back(temp);
-    }
+    void push_back(Boost::Any val) override;
 
-    void push_back(Array* value) {
-        if (value != this) {
-            resizeOnce();
-            IArray* newArr = value->Clone();
-            data[length - 1] = dynamic_cast<Array *>(newArr);
-        }
-        else {
-            std::cout << "Exception! You cannot add add an object to itself!" << std::endl;
-        }
-    }
+    void push_back(Array *value);
 
-    void scans() override {
-        auto * temp = new String();
-        temp->scans();
-        push_back(temp);
-    }
+    void scans() override;
 
-    void print() const override {
-        Array * temp;
-        for (int i = 0; i < length; ++i) {
-            temp = data[i];
-            if (temp != nullptr) {
-                temp->print();
-            }
-            else {
-                std::cout << "nullptr" << std::endl;
-            }
-        }
-    }
+    void print() const override;
 
-    void printType() const override {
-        std::cout << "anyArray[" << length << "]" << std::endl;
-    }
+    void printType() const override;
 
-    Array* operator[](int index) {
-        return data[index];
-    }
+    Array *operator[](int index);
 
-    void resize(int new_size) override {
-        if (data == nullptr) {
-            length = new_size;
-            data = new Array*[length];
-            for (int i = 0; i < length; ++i) {
-                data[i] = nullptr;
-            }
-        }
-        if (new_size > length) {
-            for (int i = length; i < new_size; ++i) {
-                push_back(nullptr);
-            }
-        }
-        else if (new_size < length) {
-            auto *newArr = new Array*[new_size];
-            for (int i = 0; i < new_size; ++i) {
-                newArr[i] = data[i];
-            }
-            delete[] data;
-            data = newArr;
-            length = new_size;
-        }
-    }
+    void resize(int new_size) override;
 
-    [[nodiscard]] IArray *Clone() const override {
-        auto * temp = new anyArray();
-        for (int i = 0; i < length; ++i) {
-            temp->push_back(data[i]);
-        }
-        return temp;
-    }
+    [[nodiscard]] IArray *Clone() const override;
 
-    ~anyArray() override{
-        delete[] data;
-    }
+    ~anyArray() override;
 };
 
 

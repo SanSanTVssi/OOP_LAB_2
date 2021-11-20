@@ -24,21 +24,7 @@ public:
 
     String(const char *);
 
-//    String Clone() {
-//        String temp;
-//        for (int i = 0; i < length; ++i) {
-//            temp.push_back(this->data[i]);
-//        }
-//        return temp;
-//    }
-
-    [[nodiscard]] IArray *Clone() const override {
-        String * temp = new String();
-        for (int i = 0; i < length; ++i) {
-            temp->push_back(data[i]);
-        }
-        return temp;
-    }
+    [[nodiscard]] IArray *Clone() const override;
 
     String(int, char);
 
@@ -66,12 +52,7 @@ public:
         delete[] data;
     }
 
-    String& operator=(String& other) {
-        for (int i = 0; i < other.Length(); ++i) {
-            this->push_back(other[i]);
-        }
-        return *this;
-    }
+    String& operator=(String& other);
 };
 
 

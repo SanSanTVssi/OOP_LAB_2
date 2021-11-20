@@ -18,20 +18,7 @@ public:
 
     explicit boolArray(Boost::Any);
 
-//    boolArray Clone() {
-//        boolArray temp;
-//        for (int i = 0; i < length; ++i) {
-//            temp.push_back(this->data[i]);
-//        }
-//        return temp;
-//    }
-    [[nodiscard]] IArray *Clone() const override {
-        boolArray * temp = new boolArray();
-        for (int i = 0; i < length; ++i) {
-            temp->push_back(data[i]);
-        }
-        return temp;
-    }
+    [[nodiscard]] IArray *Clone() const override;
 
     boolArray(int, const bool *);
 
@@ -55,16 +42,9 @@ public:
 
     [[nodiscard]] boolArray getElementInBoolArr(int) const;
 
-    boolArray& operator=(boolArray& other) {
-        for (int i = 0; i < other.Length(); ++i) {
-            this->push_back(other[i]);
-        }
-        return *this;
-    }
+    boolArray& operator=(boolArray& other);
 
-    ~boolArray() override {
-        delete[] data;
-    }
+    ~boolArray() override;
 };
 
 

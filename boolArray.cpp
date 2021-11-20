@@ -20,12 +20,6 @@ boolArray::boolArray(int RepeatOfValue, Boost::Any value) {
     }
 }
 
-//boolArray::boolArray(const boolArray &array) {
-//    for (int i = 0; i < array.Length(); ++i) {
-//        boolArray::push_back(array[i]);
-//    }
-//}
-
 void boolArray::push_back(Boost::Any value) {
     resizeOnce();
     data[length - 1] = Boost::any_cast<bool>(value);
@@ -84,7 +78,13 @@ void boolArray::scans() {
     std::string temp = std::string();
     do {
         std::cin >> temp;
-        push_back(stod(temp));
+        bool x;
+        try {
+            x = std::stod(temp);
+        }
+        catch (std::exception& exception) {
+            std::cout << "Exception!" << exception.what() << std::endl;
+        }
     } while(std::cin.get() != '\n');
     std::cin.clear();
 }
@@ -107,4 +107,23 @@ void boolArray::resizeOnce() {
     } else {
         data = (bool *) realloc(data, ++length * sizeof(bool));
     }
+}
+
+boolArray &boolArray::operator=(boolArray &other) {
+    for (int i = 0; i < other.Length(); ++i) {
+        this->push_back(other[i]);
+    }
+    return *this;
+}
+
+boolArray::~boolArray() {
+    delete[] data;
+}
+
+IArray *boolArray::Clone() const {
+    boolArray * temp = new boolArray();
+    for (int i = 0; i < length; ++i) {
+        temp->push_back(data[i]);
+    }
+    return temp;
 }

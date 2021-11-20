@@ -52,8 +52,15 @@ public:
     void scans() override {
         std::string temp = std::string();
         do {
+            double x = 0;
             std::cin >> temp;
-            push_back(stod(temp));
+            try {
+                x = std::stod(temp);
+            }
+            catch (std::exception& exception) {
+                std::cout << "Exception!" << exception.what() << std::endl;
+            }
+            push_back(x);
         } while(std::cin.get() != '\n');
         std::cin.clear();
     }

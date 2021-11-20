@@ -12,93 +12,30 @@ class arrayOfstring : public Array{
 private:
     String * data;
 
-    void resizeOnce() {
-        if (data == nullptr) {
-            data = new String[++length];
-        }
-        else {
-            auto * newarr = new String[++length];
-            for (int i = 0; i < length - 1; ++i) {
-                newarr[i] = data[i];
-            }
-            delete[] data;
-            data = newarr;
-        }
-    }
+    void resizeOnce();
 public:
 
     arrayOfstring(): Array(), data(nullptr) {}
 
-    explicit arrayOfstring (String & value) : Array(), data(nullptr) {
-        push_back(value);
-    }
+    explicit arrayOfstring (String & value);
 
-    void push_back(Boost::Any val) override {
-        String temp = String(val);
-        push_back(temp);
-    }
+    void push_back(Boost::Any val) override;
 
-    void push_back(String & value) {
-        resizeOnce();
-        data[length - 1] = value;
-    }
+    void push_back(String & value);
 
-    void scans() override {
-        String temp = String();
-        temp.scans();
-        push_back(temp);
-    }
+    void scans() override;
 
-    void print() const override {
-        for (int i = 0; i < length; ++i) {
-            data[i].print();
-        }
-    }
-    void printType() const override {
-        std::cout << "String[" << length << "]" << std::endl;
-    }
+    void print() const override;
 
-    String operator[](int index) {
-        return data[index];
-    }
+    void printType() const override;
 
-    void resize(int new_size) override {
-        if (data == nullptr) {
-            length = new_size;
-            data = new String[length];
-            for (int i = 0; i < length; ++i) {
-                String temp = String('\0');
-                data[i] = temp;
-            }
-        }
-        if (new_size > length) {
-            for (int i = length; i < new_size; ++i) {
-                String temp = String('\0');
-                push_back(temp);
-            }
-        }
-        else if (new_size < length) {
-            auto *newArr = new String[new_size];
-            for (int i = 0; i < new_size; ++i) {
-                newArr[i] = data[i];
-            }
-            delete[] data;
-            data = newArr;
-            length = new_size;
-        }
-    }
+    String operator[](int index);
 
-    [[nodiscard]] IArray *Clone() const override {
-        arrayOfstring * temp = new arrayOfstring();
-        for (int i = 0; i < length; ++i) {
-            temp->push_back(data[i]);
-        }
-        return temp;
-    }
+    void resize(int new_size) override;
 
-    ~arrayOfstring() override{
-        delete[] data;
-    }
+    [[nodiscard]] IArray *Clone() const override;
+
+    ~arrayOfstring() override;
 };
 
 
