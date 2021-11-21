@@ -6,3 +6,7 @@
 
 
 IArray::~IArray() = default;
+
+IInputOutput::~IInputOutput() = default;
+
+ICloning::~ICloning() = default;

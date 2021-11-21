@@ -100,3 +100,7 @@ IArray *anyArray::Clone() const {
 anyArray::~anyArray() {
     delete[] data;
 }
+
+anyArray::anyArray(Boost::Any value) {
+    anyArray::push_back(value);
+}

@@ -20,6 +20,8 @@ public:
 
     explicit anyArray(Array *value);
 
+    explicit anyArray(Boost::Any value);
+
     void push_back(Boost::Any val) override;
 
     void push_back(Array *value);

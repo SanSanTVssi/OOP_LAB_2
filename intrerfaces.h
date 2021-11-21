@@ -21,11 +21,13 @@ public:
     virtual void print() const = 0;
     virtual void scans() = 0;
     virtual void printType() const = 0;
+    virtual ~IInputOutput() = 0;
 };
 
 class ICloning{
 public:
     [[nodiscard]] virtual IArray *Clone() const = 0;
+    virtual ~ICloning() = 0;
 };
 
 #endif //LAB22_INTRERFACES_H
